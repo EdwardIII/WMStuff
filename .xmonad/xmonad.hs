@@ -163,7 +163,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        | (i, k) <- zip (XMonad.workspaces conf) $ [xK_1 .. xK_9] ++ [xK_0, xK_minus, xK_equal]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 
@@ -242,8 +242,8 @@ myManageHook = composeAll
     , className =? "Gimp"           --> doFloat
 
       -- Putting apps in their proper places
-    , className =? "Thunderbird"    --> doShift "2-mail"
-    , className =? "Chromium-browser"    --> doShift "3-web"
+    , className =? "Lanikai"    --> doShift "2-mail"
+    , className =? "Chromium"    --> doShift "3-web"
     , className =? "Xchat"    --> doShift "4-irc"
 
       -- Other stuff
